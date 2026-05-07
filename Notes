@@ -1,1 +1,23 @@
+# OPTIONAL FILE: detection_logic_explanation.md
 
+```markdown
+# Detection Logic Explanation
+
+This project uses basic SOC detection principles:
+
+## 1. Event Monitoring
+Tracks all Windows Security events for visibility.
+
+## 2. User Extraction
+Uses regex to extract "Account Name" from raw logs due to inconsistent field mapping.
+
+## 3. Activity Analysis
+Aggregates events by user and host to identify patterns.
+
+## 4. Anomaly Detection
+Identifies users with unusually high activity counts.
+
+## Limitations
+- No CIM normalization applied
+- Raw log parsing required
+- Limited threat intelligence enrichment
