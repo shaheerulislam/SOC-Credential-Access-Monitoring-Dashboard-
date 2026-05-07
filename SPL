@@ -1,1 +1,41 @@
+Panel 1: Total Security Events
+Displays total ingested security events in the environment.
 
+spl
+index=main sourcetype="WinEventLog:Security"
+| stats count
+
+Panel 2: Event Trend Over Time
+Shows event activity over time.
+
+index=main sourcetype="WinEventLog:Security"
+| timechart count
+
+
+Panel 3: User Activity Analysis
+Extracts user activity from Windows Security logs.
+
+
+index=main sourcetype="WinEventLog:Security"
+| search "Account"
+| rex field=_raw "Account Name:\s*(?<user>[A-Za-z0-9_\$-]+)"
+| stats count by user
+| sort - count
+
+
+Panel 4: Host/System Activity
+Displays event distribution across hosts.
+
+index=main sourcetype="WinEventLog:Security"
+| stats count by host
+| sort - count
+
+
+Panel 5: Anomaly / High Activity Detection
+Highlights users with unusually high activity.
+
+index=main sourcetype="WinEventLog:Security"
+| search "Account"
+| rex field=_raw "Account Name:\s*(?<user>[A-Za-z0-9_\$-]+)"
+| stats count by user
+| sort - count
