@@ -1,55 +1,87 @@
 SOC Credential Access Monitoring Dashboard (Splunk)
 
- Overview
-This project is a Splunk-based Security Operations Centre (SOC) dashboard built to monitor Windows Security Event Logs. It focuses on credential access activity, user behaviour analysis, and system-level monitoring to support SOC investigation and triage workflows.
-The dashboard simulates a real-world SOC environment where analysts detect and investigate authentication events using SPL queries and visual analytics.
+Overview
+This project is a Splunk-based Security Operations Centre (SOC) dashboard designed to monitor and analyse Windows Security Event Logs, with a focus on credential access activity, user behaviour, and system-level authentication patterns.
+It simulates a real-world SOC environment where security analysts investigate authentication events, identify unusual user activity, and support incident triage using log-based detection techniques.
 
- Key Features
-Real-time Windows Security Event Log monitoring
-Credential access activity tracking
-User behaviour analysis using log parsing
-Host and system-level activity visibility
-Basic anomaly detection using event aggregation
-SOC-style dashboard visualisation (charts, tables, single values)
+
+Objectives
+Monitor Windows Security Event Logs in a SOC environment
+Analyse credential access and authentication activity
+Identify user behaviour patterns and anomalies
+Visualise security events for SOC triage and investigation
+Build practical detection logic using Splunk SPL queries
+
 
 Technologies Used
 Splunk Enterprise
-Windows Event Logs (Security Logs)
+Windows Security Event Logs (WinEventLog:Security)
 SPL (Search Processing Language)
 Regex-based field extraction
-Dashboard visualisation (Line charts, Bar charts, Tables, Single value)
+Dashboard visualisation (Single Value, Line Chart, Bar Chart, Tables)
+
+Dashboard Structure
+Panel 1 – Total Security Events
+Provides a high-level overview of all ingested Windows Security events.
+
+Panel 2 – Event Trend Analysis
+Displays event activity over time to identify spikes or unusual patterns.
+
+Panel 3 – User Activity Analysis
+Extracts and analyses user accounts from authentication logs using regex-based parsing.
+
+Panel 4 – System / Host Activity
+Shows event distribution across hosts to support system-level monitoring.
+
+Panel 5 – Anomaly / High Activity Detection
+Highlights users with unusually high activity levels to support potential threat investigation.
 
 
-Dashboard Components
-Total Events Panel – Displays total security events
-Event Trend Panel – Shows activity over time
-User Activity Panel – Analyses user-level behaviour
-Host Activity Panel – Displays system-level distribution
-Anomaly Panel – Highlights high-frequency user activity
+SOC Use Case
+This dashboard demonstrates how SOC analysts monitor Windows authentication activity to detect:
+Credential access behaviour
+User login patterns
+System account activity (e.g., SYSTEM, service accounts)
+Unusual spikes in authentication events
+Early indicators of suspicious behaviour
 
+Detection Logic Approach
+Uses Splunk SPL to query Windows Security logs
+Applies regex to extract user information from raw log data
+Aggregates events to identify behavioural patterns
+Uses time-based analysis for trend detection
+Groups activity by user and host for investigation
+
+Detection Coverage
+Credential access monitoring
+User authentication analysis
+System-level activity tracking
+High-frequency event detection
+Basic anomaly identification based on event volume
 
 Key Learning Outcomes
 Working with raw Windows Security logs in Splunk
-Extracting fields using SPL and regex
-Building SOC-style detection dashboards
-Understanding authentication event analysis
-Identifying limitations in unstructured log data
-
+Extracting structured data from unstructured logs
+Building SOC-style dashboards using SPL
+Understanding authentication and logon event analysis
+Identifying limitations of non-CIM normalised data
 
 Limitations
-No full CIM normalization applied
-Some fields required manual extraction from raw logs
-No advanced correlation rules or alerting configured
-Dataset contains mixed structured and unstructured logs
-
+No full CIM data model integration
+Some fields require manual extraction from raw logs
+No automated alerting configured
+Dataset contains mixed structured/unstructured events
 
 Future Improvements
-Add Splunk CIM data model integration
-Implement brute-force detection (EventCode 4625)
-Add alerting and automation rules
+Implement Splunk CIM data model for normalization
+Add brute-force detection (EventCode 4625 monitoring)
+Introduce alerting and correlation rules
 Integrate threat intelligence feeds
-Enhance anomaly detection logic
+Enhance anomaly detection logic with risk scoring
 
 Author
 Shaheer Ul Islam
-Cybersecurity / SOC Analyst Enthusiast
+SOC Analyst / Cybersecurity Enthusiast
+
+Summary
+This project demonstrates practical SOC monitoring capabilities using Splunk, focusing on credential access detection, user behaviour analysis, and security event visualisation to support incident response workflows.
